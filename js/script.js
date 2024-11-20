@@ -1,5 +1,5 @@
 // Carica i dati da un file JSON
-fetch('../json/player.json')
+fetch('json/player.json')
   .then(response => response.json())
   .then(data => {
     leaderboardData = data;
