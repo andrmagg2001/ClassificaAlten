@@ -50,6 +50,7 @@
                     <th>Nome</th>
                     <th>Vittorie</th>
                     <th>Sconfitte</th>
+                    <th>Score</th>
                     <th>Azioni</th>
                 </tr>
             `;
@@ -71,6 +72,12 @@
                         ${item.losses}
                         <button onclick="updateValue(${index}, 'losses', 1)">+</button>
                     </td>
+                    <td>
+                        <button onclick="updateValue(${index}, 'score', -0.25)">-</button>
+                        ${item.score}
+                        <button onclick="updateValue(${index}, 'score', 0.25)">+</button>
+                    </td>
+
                     <td>
                         <button onclick="resetRow(${index})">Reset</button>
                     </td>
