@@ -3,105 +3,105 @@
     "name": "Andrea",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/Andrea.png",
+    "foto": "images/players/Andrea.png",
     "score": 0
   },
   {
     "name": "Giuliano",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/Giuliano.png",
+    "foto": "images/players/Giuliano.png",
     "score": 0
   },
   {
     "name": "Matteo DP",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/",
+    "foto": "images/players/",
     "score": 0
   },
   {
     "name": "Luca",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/Luca.png",
+    "foto": "images/players/Luca.png",
     "score": 0
   },
   {
     "name": "Stefano",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/",
+    "foto": "images/players/",
     "score": 0
   },
   {
     "name": "Luis",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/lvi2.jpg",
+    "foto": "images/players/lvi2.jpg",
     "score": 0
   },
   {
     "name": "Valerio L",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/",
+    "foto": "images/players/",
     "score": 0
   },
   {
     "name": "Daniele A",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/DanieleA.png",
+    "foto": "images/players/DanieleA.png",
     "score": 0
   },
   {
     "name": "Daniele B",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/",
+    "foto": "images/players/",
     "score": 0
   },
   {
     "name": "Federico",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/Federico.png",
+    "foto": "images/players/Federico.png",
     "score": 0
   },
   {
     "name": "Pier Giorgio",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/pgd.jpg",
+    "foto": "images/players/pgd.jpg",
     "score": 0
   },
   {
     "name": "Gianmarco",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/Zizzo.png",
+    "foto": "images/players/Zizzo.png",
     "score": 0
   },
   {
     "name": "Matteo M",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/MM.png",
+    "foto": "images/players/MM.png",
     "score": 0
   },
   {
     "name": "Silvia",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/Silvia.png",
+    "foto": "images/players/Silvia.png",
     "score": 0
   },
   {
     "name": "Valerio B",
     "wins": 0,
     "losses": 0,
-    "foto": "../images/players/",
+    "foto": "images/players/",
     "score": 0
   }
 ]
