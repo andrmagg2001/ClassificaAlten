@@ -1,5 +1,5 @@
 // Carica i dati da un file JSON
-fetch('player.json')
+fetch('JSON/players.json')
   .then(response => response.json())
   .then(data => {
     leaderboardData = data;
@@ -19,6 +19,7 @@ function renderLeaderboard() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${index + 1}</td>
+      <td>${player.foto}</td>
       <td>${player.name}</td>
       <td>${player.score}</td>
       <td>${player.wins}</td>
