@@ -1,31 +1,31 @@
 [
   {
     "name": "Andrea",
-    "wins": 0,
-    "losses": 0,
+    "wins": 1,
+    "losses": 2,
     "foto": "images/players/Andrea.png",
-    "score": 0
+    "score": 1
   },
   {
     "name": "Giuliano",
-    "wins": 0,
-    "losses": 0,
+    "wins": 2,
+    "losses": 1,
     "foto": "images/players/Giuliano.png",
-    "score": 0
+    "score": 2
   },
   {
     "name": "Matteo DP",
-    "wins": 0,
-    "losses": 0,
+    "wins": 1,
+    "losses": 1,
     "foto": "images/players/MatteoDP.png",
-    "score": 0
+    "score": 1
   },
   {
     "name": "Luca",
-    "wins": 0,
-    "losses": 0,
+    "wins": 2,
+    "losses": 1,
     "foto": "images/players/Luca.png",
-    "score": 0
+    "score": 2
   },
   {
     "name": "Stefano",
@@ -37,29 +37,22 @@
   {
     "name": "Luis",
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "foto": "images/players/lvi.png",
     "score": 0
   },
   {
     "name": "Valerio L",
-    "wins": 0,
-    "losses": 0,
+    "wins": 1,
+    "losses": 1,
     "foto": "images/players/ValerioL.png",
-    "score": 0
+    "score": 1
   },
   {
     "name": "Daniele A",
     "wins": 0,
     "losses": 0,
     "foto": "images/players/DanieleA.png",
-    "score": 0
-  },
-  {
-    "name": "Daniele B",
-    "wins": 0,
-    "losses": 0,
-    "foto": "images/players/",
     "score": 0
   },
   {
@@ -85,10 +78,10 @@
   },
   {
     "name": "Matteo M",
-    "wins": 0,
-    "losses": 0,
+    "wins": 1,
+    "losses": 2,
     "foto": "images/players/MM.png",
-    "score": 0
+    "score": 1
   },
   {
     "name": "Silvia",
@@ -100,7 +93,7 @@
   {
     "name": "Valerio B",
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "foto": "images/players/",
     "score": 0
   }
