@@ -8,50 +8,50 @@
   },
   {
     "name": "Giuliano",
-    "wins": 2,
-    "losses": 1,
+    "wins": 6,
+    "losses": 2,
     "foto": "images/players/Giuliano.png",
-    "score": 2
+    "score": 5
   },
   {
     "name": "Matteo DP",
     "wins": 1,
-    "losses": 1,
+    "losses": 3,
     "foto": "images/players/MatteoDP.png",
     "score": 1
   },
   {
     "name": "Luca",
     "wins": 2,
-    "losses": 1,
+    "losses": 3,
     "foto": "images/players/Luca.png",
     "score": 2
   },
   {
     "name": "Stefano",
-    "wins": 0,
-    "losses": 0,
+    "wins": 3,
+    "losses": 2,
     "foto": "images/players/Stefano.png",
-    "score": 0
+    "score": 3
   },
   {
     "name": "Luis",
-    "wins": 0,
-    "losses": 1,
+    "wins": 4,
+    "losses": 2,
     "foto": "images/players/lvi.png",
-    "score": 0
+    "score": 4
   },
   {
     "name": "Valerio L",
     "wins": 1,
-    "losses": 1,
+    "losses": 3,
     "foto": "images/players/ValerioL.png",
     "score": 1
   },
   {
     "name": "Daniele A",
     "wins": 0,
-    "losses": 0,
+    "losses": 2,
     "foto": "images/players/DanieleA.png",
     "score": 0
   },
