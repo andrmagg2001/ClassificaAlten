@@ -1,10 +1,10 @@
 [
   {
     "name": "Andrea",
-    "wins": 1,
-    "losses": 2,
+    "wins": 4,
+    "losses": 4,
     "foto": "images/players/Andrea.png",
-    "score": 1
+    "score": 3.25
   },
   {
     "name": "Giuliano",
