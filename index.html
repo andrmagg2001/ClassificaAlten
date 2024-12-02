@@ -42,7 +42,7 @@
         <div class="title" style="color: white;">Ranking</div>
         <table id="leaderboard" class="table is-striped is-hoverable is-bordered is-fullwidth">
           <thead>
-            <tr class="">
+            <tr>
               <th>Posizione</th>
               <th>Foto</th>
               <th>Nome</th>
@@ -64,9 +64,9 @@
         <div class="box">
           <!-- Input Area 1 -->
           <div class="field">
-            <label class="label">Row ID</label>
+            <label class="label">Player Name</label>
             <div class="control">
-              <input id="rowId" class="input" type="text" placeholder="Your ID Here">
+              <input id="pname" class="input" type="text" placeholder="Player Name">
             </div>
           </div>
           
@@ -75,6 +75,27 @@
             <label class="label">Points Obtained</label>
             <div class="control">
               <input id="points" class="input" type="text" placeholder="Enter your points here">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Victories</label>
+            <div class="control">
+              <input id="win" class="input" type="text" placeholder="Enter day victories">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Losses</label>
+            <div class="control">
+              <input id="lose" class="input" type="text" placeholder="Enter day losses">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input id="pw" class="input" type="password" placeholder="Enter password">
             </div>
           </div>
           
@@ -90,7 +111,7 @@
   </main>
 
   <script>
-    const initialData = [
+    var initialData = [
       { "name": "Andrea", "wins": 4, "losses": 4, "foto": "images/players/Andrea.png", "score": 3.25 },
       { "name": "Giuliano", "wins": 6, "losses": 2, "foto": "images/players/Giuliano.png", "score": 5 },
       { "name": "Matteo DP", "wins": 1, "losses": 3, "foto": "images/players/MatteoDP.png", "score": 1 },
@@ -106,21 +127,35 @@
       { "name": "Silvia", "wins": 0, "losses": 0, "foto": "images/players/Silvia.png", "score": 0 },
       { "name": "Valerio B", "wins": 0, "losses": 1, "foto": "images/players/ValerioB.png", "score": 0 }
     ];
-
+  
     // Salva i dati iniziali nel localStorage se non esistono
-    if (!localStorage.getItem('leaderboardData')) {
+    if (!localStorage.getItem('leaderboardData')) 
+    {
       localStorage.setItem('leaderboardData', JSON.stringify(initialData));
     }
-
+  
     // Carica la leaderboard dal localStorage
-    function loadLeaderboard() {
+    function loadLeaderboard() 
+    {
       const leaderboardData = JSON.parse(localStorage.getItem('leaderboardData'));
-      const tbody = document.querySelector('#leaderboard');
+      const tbody = document.querySelector('#leaderboard tbody');
       tbody.innerHTML = '';
+  
+      // Ordina la leaderboard in base al punteggio (decrescente)
+      leaderboardData.sort((a, b) => {
+        // Prima confronta i punti (in ordine decrescente)
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
 
-      leaderboardData.sort((a, b) => b.score - a.score);
+        // Se i punti sono uguali, confronta le sconfitte (in ordine crescente)
+        return a.losses - b.losses;
+      });
 
-      leaderboardData.forEach((player, index) => {
+  
+      // Genera le righe della tabella
+      leaderboardData.forEach((player, index) => 
+      {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${index + 1}</td>
@@ -135,35 +170,79 @@
         tbody.appendChild(tr);
       });
     }
-
+  
     // Funzione per aggiornare il punteggio
-    function updateScore(rowId, points) {
+    function updateScore(pname, points, win, lose) 
+    {
       const leaderboardData = JSON.parse(localStorage.getItem('leaderboardData'));
-      const player = leaderboardData.find(p => p.name === rowId);
-
-      if (player) {
-        player.score += parseFloat(points);  // Incrementa il punteggio
-        localStorage.setItem('leaderboardData', JSON.stringify(leaderboardData));  // Salva nel localStorage
-        alert('Punteggio aggiornato!');
-        loadLeaderboard();  // Ricarica la leaderboard
+      const index = leaderboardData.findIndex(p => p.name === pname);
+  
+      var multiplier = 1;
+  
+      if (index !== -1) {
+        // Applica il moltiplicatore in base alla posizione
+        if (index < 6) {
+          multiplier = 0.75;
+        } else if (index >= 11) {
+          multiplier = 1.25;
+        }
+  
+        // Aggiungi i punti al punteggio
+        leaderboardData[index].score  += parseFloat(points * multiplier);
+        leaderboardData[index].wins   += parseInt(win);
+        leaderboardData[index].losses += parseInt(lose);
+  
+        // Ordina i dati dopo aver aggiornato il punteggio
+        leaderboardData.sort((a, b) => b.score - a.score);
+  
+        // Salva i dati aggiornati nel localStorage
+        localStorage.setItem('leaderboardData', JSON.stringify(leaderboardData));
+  
+        alert(`Score updated for ${pname}!`);
+  
+        // Ricarica la leaderboard
+        loadLeaderboard();
       } else {
-        alert('Giocatore non trovato!');
+        alert('Player Not Found!');
       }
     }
-
-    // Gestione del click sul pulsante di invio
+  
+    // Gestione dell'evento per il pulsante di submit
     document.getElementById('submitBtn').addEventListener('click', () => {
-      const rowId = document.getElementById('rowId').value;
+      const pname  = document.getElementById('pname').value;
       const points = document.getElementById('points').value;
+      const win    = document.getElementById('win').value;
+      const lose   = document.getElementById('lose').value;
 
-      if (rowId && points) {
-        updateScore(rowId, points);
-      } else {
-        alert('Per favore, compila tutti i campi!');
-      }
+      const inputText = document.getElementById('pw').value;
+      
+      const encoder = new TextEncoder();
+      const data    = encoder.encode(inputText);
+
+      crypto.subtle.digest('SHA-256', data).then(function(hashBuffer) 
+      {
+        const hashArray = Array.from(new Uint8Array(hashBuffer)); // Array di byte
+        const hashHex   = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join(''); // Stringa esadecimale
+        
+        if (hashHex === "c6f6c6df742f719738168244e020faed4a4a49b68defa68652c830a024ba7a08")
+        {
+          if (pname && points && win && lose) {
+            updateScore(pname, points, win, lose);
+          } else {
+            alert('Form Error!');
+          }
+        }
+        else
+        {
+          alert("Password Error!");
+        }
+      }).catch(function(err) {
+        console.error(err);
+      });
+
     });
-
-    // Carica la leaderboard all'inizio
+  
+    // Carica la leaderboard iniziale
     loadLeaderboard();
   </script>
 </body>
