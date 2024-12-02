@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClassificAlten</title>
   <link rel="stylesheet" href="css/bulma.css">
+  <style>
+    #title:hover
+    {
+      cursor: pointer;
+      position: relative;
+    }
+    .hidden-text {
+      display: none;
+      position: absolute;
+      top: 100px; /* Posiziona il testo sopra l'elemento h1 */
+      left: 49%;
+      background-color: rgba(0, 0, 0, 0.7); /* Sfondo scuro per contrasto */
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    /* Mostra il testo quando l'utente passa sopra l'h1 */
+    h1:hover + .hidden-text {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <section class="hero is-primary is-small">
@@ -31,6 +53,7 @@
         <!-- Colonna per il testo -->
         <div class="column">
           <h1 id="title" class="title has-text-black has-text-centered">ATP Alten Ranking</h1>
+          <p class="hidden-text">Regole Del Torneo</p>
         </div>
       </div>
     </div>
