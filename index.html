@@ -30,7 +30,7 @@
         </div>
         <!-- Colonna per il testo -->
         <div class="column">
-          <h1 class="title has-text-black has-text-centered">ATP Alten Ranking</h1>
+          <h1 id="title" class="title has-text-black has-text-centered">ATP Alten Ranking</h1>
         </div>
       </div>
     </div>
@@ -247,6 +247,10 @@
       loadLeaderboard();
     });
     */
+
+    document.getElementById('title').addEventListener('click', () => {
+      window.open('rules.html', '_blank');
+    });
   
     // Carica la leaderboard iniziale
     loadLeaderboard();
