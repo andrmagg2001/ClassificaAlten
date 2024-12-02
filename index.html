@@ -104,6 +104,12 @@
               <button id="submitBtn" class="button is-primary">Submit</button>
             </div>
           </div>
+
+          <div class="field is-grouped is-justify-content-flex-end">
+            <div class="control">
+              <button id="resetBtn" class="button is-primary">Reset</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -239,6 +245,11 @@
         console.error(err);
       });
 
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      localStorage.setItem('leaderboardData', JSON.stringify(initialData));
+      loadLeaderboard();
     });
   
     // Carica la leaderboard iniziale
