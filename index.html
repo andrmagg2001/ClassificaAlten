@@ -40,7 +40,7 @@
   <main>
     <section class="section">
       <div class="container">
-        <div class="title" style="color: black;">Ranking</div>
+        <div class="title" style="color: white;">Ranking</div>
         <table id="leaderboard" class="table is-striped is-hoverable is-bordered is-fullwidth">
           <thead>
             <tr class="">
@@ -60,7 +60,7 @@
     </section>
 
     <section class="section">
-      <div class="title" style="color: black;">Ranking Update</div>
+      <div class="title" style="color: white;">Ranking Update</div>
       <div class="container">
         <div class="box">
           <!-- Input Area 1 -->
@@ -89,133 +89,83 @@
       </div>
     </section>
   </main>
-  <script src="JavaScript/script.js"></script>
 
   <script>
-    // Dati iniziali in formato JSON
-    let players = [
-      {
-        "name": "Andrea",
-        "wins": 4,
-        "losses": 4,
-        "foto": "images/players/Andrea.png",
-        "score": 3.25
-      },
-      {
-        "name": "Giuliano",
-        "wins": 6,
-        "losses": 2,
-        "foto": "images/players/Giuliano.png",
-        "score": 5
-      },
-      {
-        "name": "Matteo DP",
-        "wins": 1,
-        "losses": 3,
-        "foto": "images/players/MatteoDP.png",
-        "score": 1
-      },
-      {
-        "name": "Luca",
-        "wins": 2,
-        "losses": 3,
-        "foto": "images/players/Luca.png",
-        "score": 2
-      },
-      {
-        "name": "Stefano",
-        "wins": 3,
-        "losses": 2,
-        "foto": "images/players/Stefano.png",
-        "score": 3
-      },
-      {
-        "name": "Luis",
-        "wins": 4,
-        "losses": 2,
-        "foto": "images/players/lvi.png",
-        "score": 4
-      },
-      {
-        "name": "Valerio L",
-        "wins": 1,
-        "losses": 3,
-        "foto": "images/players/ValerioL.png",
-        "score": 1
-      },
-      {
-        "name": "Daniele A",
-        "wins": 0,
-        "losses": 2,
-        "foto": "images/players/DanieleA.png",
-        "score": 0
-      },
-      {
-        "name": "Federico",
-        "wins": 0,
-        "losses": 0,
-        "foto": "images/players/Federico.png",
-        "score": 0
-      },
-      {
-        "name": "Pier Giorgio",
-        "wins": 0,
-        "losses": 0,
-        "foto": "images/players/pgd.jpg",
-        "score": 0
-      },
-      {
-        "name": "Gianmarco",
-        "wins": 0,
-        "losses": 0,
-        "foto": "images/players/Zizzo.png",
-        "score": 0
-      },
-      {
-        "name": "Matteo M",
-        "wins": 1,
-        "losses": 2,
-        "foto": "images/players/MM.png",
-        "score": 1
-      },
-      {
-        "name": "Silvia",
-        "wins": 0,
-        "losses": 0,
-        "foto": "images/players/Silvia.png",
-        "score": 0
-      },
-      {
-        "name": "Valerio B",
-        "wins": 0,
-        "losses": 1,
-        "foto": "images/players/ValerioB.png",
-        "score": 0
-      }
+    const initialData = [
+      { "name": "Andrea", "wins": 4, "losses": 4, "foto": "images/players/Andrea.png", "score": 3.25 },
+      { "name": "Giuliano", "wins": 6, "losses": 2, "foto": "images/players/Giuliano.png", "score": 5 },
+      { "name": "Matteo DP", "wins": 1, "losses": 3, "foto": "images/players/MatteoDP.png", "score": 1 },
+      { "name": "Luca", "wins": 2, "losses": 3, "foto": "images/players/Luca.png", "score": 2 },
+      { "name": "Stefano", "wins": 3, "losses": 2, "foto": "images/players/Stefano.png", "score": 3 },
+      { "name": "Luis", "wins": 4, "losses": 2, "foto": "images/players/lvi.png", "score": 4 },
+      { "name": "Valerio L", "wins": 1, "losses": 3, "foto": "images/players/ValerioL.png", "score": 1 },
+      { "name": "Daniele A", "wins": 0, "losses": 2, "foto": "images/players/DanieleA.png", "score": 0 },
+      { "name": "Federico", "wins": 0, "losses": 0, "foto": "images/players/Federico.png", "score": 0 },
+      { "name": "Pier Giorgio", "wins": 0, "losses": 0, "foto": "images/players/pgd.jpg", "score": 0 },
+      { "name": "Gianmarco", "wins": 0, "losses": 0, "foto": "images/players/Zizzo.png", "score": 0 },
+      { "name": "Matteo M", "wins": 1, "losses": 2, "foto": "images/players/MM.png", "score": 1 },
+      { "name": "Silvia", "wins": 0, "losses": 0, "foto": "images/players/Silvia.png", "score": 0 },
+      { "name": "Valerio B", "wins": 0, "losses": 1, "foto": "images/players/ValerioB.png", "score": 0 }
     ];
-  
+
+    // Salva i dati iniziali nel localStorage se non esistono
+    if (!localStorage.getItem('leaderboardData')) {
+      localStorage.setItem('leaderboardData', JSON.stringify(initialData));
+    }
+
+    // Carica la leaderboard dal localStorage
+    function loadLeaderboard() {
+      const leaderboardData = JSON.parse(localStorage.getItem('leaderboardData'));
+      const tbody = document.querySelector('#leaderboard');
+      tbody.innerHTML = '';
+
+      leaderboardData.sort((a, b) => b.score - a.score);
+
+      leaderboardData.forEach((player, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>
+            <img src="${player.foto}" alt="${player.name}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+          </td>
+          <td>${player.name}</td>
+          <td>${player.score}</td>
+          <td>${player.wins}</td>
+          <td>${player.losses}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
     // Funzione per aggiornare il punteggio
     function updateScore(rowId, points) {
-      const index = parseInt(rowId) - 1; // Converti ID della riga in indice dell'array
-      if (index >= 0 && index < players.length) {
-        players[index].score += parseFloat(points); // Aggiungi i punti al punteggio
-        alert(`Punteggio aggiornato per ${players[index].name}: ${players[index].score}`);
-        console.log(players);
+      const leaderboardData = JSON.parse(localStorage.getItem('leaderboardData'));
+      const player = leaderboardData.find(p => p.name === rowId);
+
+      if (player) {
+        player.score += parseFloat(points);  // Incrementa il punteggio
+        localStorage.setItem('leaderboardData', JSON.stringify(leaderboardData));  // Salva nel localStorage
+        alert('Punteggio aggiornato!');
+        loadLeaderboard();  // Ricarica la leaderboard
       } else {
-        alert("ID della riga non valido!");
+        alert('Giocatore non trovato!');
       }
     }
-  
-    // Event Listener per il bottone
-    document.getElementById("submitBtn").addEventListener("click", async function() {
-      const rowId = document.getElementById("rowId").value;
-      const points = document.getElementById("points").value;
+
+    // Gestione del click sul pulsante di invio
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const rowId = document.getElementById('rowId').value;
+      const points = document.getElementById('points').value;
+
       if (rowId && points) {
         updateScore(rowId, points);
       } else {
-        alert("Per favore, compila tutti i campi!");
+        alert('Per favore, compila tutti i campi!');
       }
     });
+
+    // Carica la leaderboard all'inizio
+    loadLeaderboard();
   </script>
 </body>
 </html>

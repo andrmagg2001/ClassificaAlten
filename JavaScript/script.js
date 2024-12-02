@@ -19,7 +19,9 @@ function renderLeaderboard() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${index + 1}</td>
-      <td><img src="${player.foto}" alt="${player.name}" class="player-photo"></td>
+      <td>
+      <img src="${player.foto}" alt="${player.name}" class="player-photo">
+      </td>
       <td>${player.name}</td>
       <td>${player.score}</td>
       <td>${player.wins}</td>
