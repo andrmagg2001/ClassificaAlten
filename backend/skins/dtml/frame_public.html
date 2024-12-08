@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassificAlten</title>
+    <link rel="stylesheet" href="backend/skins/css/bulma.css">
+    <script src="backend/js/ajax-3.6.4.min.js"></script>
+    <style>
+        .modal-card {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .fixed-width
+        {
+        width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero is-primary is-small">
+        <div class="hero-body">
+            <div class="columns is-vcentered">
+                <!-- Colonna per il logo -->
+                <div class="column is-narrow">
+                    <svg width="37px" height="60px" viewBox="0 0 37 60" xmlns="http://www.w3.org/2000/svg">
+                        <polygon fill="#FFF02A"
+                            points="31.383901 1.495356035 35.2365325 1.495356035 35.2365325 52.8687305 1.500928795 52.8687305 1.500928795 42.4235294">
+                        </polygon>
+                        <polygon fill="#EB212E"
+                            points="1.48421053 1.48421053 1.500928795 42.3380805 31.38204335 1.495356035"></polygon>
+                        <path
+                            d="M36.74303405,54.3436535 L0,54.3436535 L0,0 L36.74303405,0 L36.74303405,54.3436535 Z M1.3876161,52.956037 L35.35541795,52.956037 L35.35541795,1.3876161 L1.3876161,1.3876161 L1.3876161,52.956037 Z"
+                            fill="#FFFFFF"></path>
+                        <path
+                            d="M0.789473685,0.789473685 L0.789473685,53.5541795 L35.9517028,53.5541795 L35.9517028,0.789473685 L0.789473685,0.789473685 Z M34.56594425,2.177089785 L34.56594425,52.1665635 L2.177089785,52.1665635 L2.177089785,2.177089785 L34.56594425,2.177089785 Z"
+                            fill="#000000"></path>
+                        <polygon fill="#0096D7"
+                            points="30.88049535 2.184520125 0.858204335 43.1869969 4.346749225 43.34489165 30.61671825 7.72012385">
+                        </polygon>
+                        <polygon fill="#000000"
+                            points="27.1634675 26.40743035 13.36904025 17.29411765 28.2520124 9.8396285"></polygon>
+                        <polygon fill="#000000"
+                            points="26.3126935 41.56904025 16.11826625 41.5727554 21.2396285 32.6767802"></polygon>
+                        <path
+                            d="M18.774613,46.5770898 C18.796904,44.4780186 23.41857585,44.6489164 25.32817335,46.5770898 L18.774613,46.5770898 Z"
+                            fill="#EB212E"></path>
+                        <path
+                            d="M2.466873065,59.104644 L1.909597525,59.821672 0.521981425,59.821672 3.157894735,56.3312695 4.179566565,56.3312695 6.74489165,59.8142415 5.3368421,59.8142415 4.816718265,59.0972135 2.466873065,59.104644 Z M3.605572755,57.3287925 L3.586996905,57.3287925 2.84396285,58.5640865 4.458204335,58.5640865 3.605572755,57.3287925 Z">
+                        </path>
+                        <polygon
+                            points="11.24396285 59.2458205 13.101548 59.2458205 13.101548 59.8142415 9.9250774 59.8142415 9.9250774 56.4204335 11.24396285 56.4204335">
+                        </polygon>
+                        <polygon
+                            points="18.50526315 59.8142415 17.1863777 59.8142415 17.1863777 56.990712 15.8229102 56.990712 15.8229102 56.413003 19.876161 56.413003 19.876161 56.990712 18.50526315 56.990712">
+                        </polygon>
+                        <polygon
+                            points="24.4495356 56.998142 24.4495356 57.7411765 26.54674925 57.7411765 26.54674925 58.3281735 24.4495356 58.3281735 24.4495356 59.256966 26.62848295 59.256966 26.62848295 59.8142415 23.13065015 59.8142415 23.13065015 56.4204335 26.62848295 56.4204335 26.62848295 56.998142">
+                        </polygon>
+                        <polygon
+                            points="30.27863775 56.3312695 31.22972135 56.3312695 34.7888545 58.7089785 34.80743035 58.7089785 34.80743035 56.4204335 36.1244582 56.4204335 36.1244582 59.8904025 35.1733746 59.8904025 31.6142415 57.5126935 31.59752325 57.5126935 31.59752325 59.8142415 30.27863775 59.8142415">
+                        </polygon>
+                    </svg>
+                    
+                </div>
+                <!-- Colonna per il testo -->
+                <div class="column is-vcentered">
+                    <h1 id="title" class="title has-text-black has-text-centered">ATP Alten Ranking</h1>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <main>
+
+        <div class="box">
+            <nav class="level">
+                <div class="level-item has-text-centered" id="home" style="display: block;">
+                    <button class="button is-primary fixed-width" onclick="location.href='index.php'">Home</button>
+                </div>
+                <div class="level-item has-text-centered" id="loginButton">
+                    <button class="button is-primary fixed-width">Login</button>
+                </div>
+                <div class="level-item has-text-centered" id="updateRankDiv" style="display: none;">
+                    <button class="button is-primary fixed-width" onclick="location.href='update.php'">Update Rankings</button>
+                </div>
+                <div class="level-item has-text-centered" id="dashbardDiv" style="display: none;">
+                    <a class="button is-primary fixed-width" onclick="location.href='dashboard.php'">Dashboard</a>
+                </div>
+                <div class="level-item has-text-centered" id="logoutButton" style="display: none;">
+                    <button class="button is-danger fixed-width" onclick="logout()">Logout</button>
+                </div>
+            </nav>
+        </div>
+
+        <div class="modal" id="loginModal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Login</p>
+                    <button class="delete" aria-label="close" id="closeModal"></button>
+                </header>
+                <section class="modal-card-body">
+                    <form id="loginForm">
+                        <!-- Campo Username -->
+                        <div class="field">
+                            <label class="label">Username</label>
+                            <div class="control">
+                                <input class="input" id='uname' type="text" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <!-- Campo Password -->
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control">
+                                <input class="input" id='passwd' type="password" placeholder="Enter your password"
+                                    required>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-primary" id="login" onclick="login()">Login</button>
+                </footer>
+            </div>
+        </div>
+
+
+        <[CONTENT]>
+
+
+            <section class="hero is-small ">
+                <div class="hero-body">
+                    <div class="columns is-vcentered">
+                        <!-- Colonna per il logo -->
+                        <div class="column is-narrow">
+                            <div class="column is-vcentered is-narrow">
+                                <img id="laura" src="backend/skins/img/meme/laura.png" alt="laura" class="zoomable2">
+                            </div>
+                        </div>
+                        <div class="column is-vcentered">
+                            <div class="content has-text-centered">
+                                <p>
+                                    <strong>Campionato di Biliardino</strong> - Organizzato da <a
+                                        href="error.php">Federazione Italiana
+                                        di
+                                        GBiliardino ALTEN (FIGA)</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <script>
+                document.getElementById('title').addEventListener('click', () => {
+                    location.href = 'rules.php'
+                });
+
+
+                // Seleziona gli elementi
+                const loginButton = document.getElementById('loginButton');
+                const loginModal  = document.getElementById('loginModal');
+                const closeModal  = document.getElementById('closeModal');
+
+                // Mostra il Modale
+                loginButton.addEventListener('click', () => {
+                    loginModal.classList.add('is-active');
+                });
+
+                // Chiudi il Modale
+                closeModal.addEventListener('click', () => {
+                    loginModal.classList.remove('is-active');
+                });
+
+                // Chiudi il Modale cliccando sullo sfondo
+                document.querySelector('.modal-background').addEventListener('click', () => {
+                    loginModal.classList.remove('is-active');
+                });
+
+
+
+                function login() {
+                    const uname = $('#uname').val();
+                    const passwd = $('#passwd').val();
+
+                    const loginModal = document.getElementById('loginModal');
+
+
+                    // Chiamata AJAX
+                    $.ajax({
+                        url: 'backend/include/login.php',
+                        type: 'POST',
+                        data: {
+                            uname: uname,
+                            passwd: passwd,
+                            action: 'login',
+                        },
+                        success: function (response) {
+                            if (response == 0) {
+                                alert('invalid username or password!')
+                            }
+                            else if (response == 1) {
+                                window.location.href = "dashboard.php";
+                                loginModal.classList.remove('is-active');
+                            }
+                        },
+                        error: function () {
+
+                        },
+                    });
+                }
+
+                function logout() {
+                    $.ajax({
+                        url: 'backend/include/login.php',
+                        type: 'POST',
+                        data: {
+                            action: 'logout',
+                        },
+                        success: function (response) {
+                            window.location.href = "index.php";
+                        },
+                        error: function () {
+
+                        },
+                    });
+                }
+
+                function deletePlayer(pname)
+                {
+                    $.ajax({
+                        url: 'backend/include/delete.php',
+                        type: 'POST',
+                        data: {
+                            name: pname,
+                        },
+                        success: function (response) {
+                            if (response == 0)
+                            {
+                                alert('error!')
+                            }
+                            else if (response == 1)
+                            {
+                                location.reload();
+                            }
+                        },
+                        error: function () {
+                        },
+                    });
+                }
+
+
+                function addPlayer()
+                {
+                    const player = $('#nname').val();
+
+                    $.ajax({
+                        url: 'backend/include/add.php',
+                        type: 'POST',
+                        data: {
+                            name: player,
+                        },
+                        success: function (response) {
+                            if (response == 0)
+                            {
+                                alert('error!')
+                            }
+                            else if (response == 1)
+                            {
+                                location.reload();
+                            }
+                            else if (response == 2)
+                            {
+                                alert('Player already exists!')
+                            }
+                        },
+                        error: function () {
+                        },
+                    });
+                }
+
+                function saveData(pname, index)
+                {
+                    const nname = $('#name'+index).val();
+                    const nscore = $('#score'+index).val();
+                    const nwin = $('#win'+index).val();
+                    const nlose = $('#lose'+index).val();
+
+                    $.ajax({
+                        url: 'backend/include/modify.php',
+                        type: 'POST',
+                        data: {
+                            name: pname,
+                            nname: nname,
+                            nscore: nscore,
+                            nwin: nwin,
+                            nlose: nlose
+                        },
+                        success: function (response) {
+                            if (response == 0)
+                            {
+                                alert('error!')
+                            }
+                            else if (response == 1)
+                            {
+                                location.reload();
+                            }
+                        },
+                        error: function () {
+                        },
+                    });
+                }
+                
+
+                function showItem(id)
+                {
+                    if (id == 0)
+                    {
+                        document.getElementById('apd').style.display = 'block';
+                        document.getElementById('pmd').style.display = 'none';
+                        document.getElementById('md').style.display  = 'none';
+                    }
+                    else if (id == 1)
+                    {
+                        document.getElementById('apd').style.display = 'none';
+                        document.getElementById('pmd').style.display = 'block';
+                        document.getElementById('md').style.display  = 'none';
+                    }
+                    else if (id == 2)
+                    {
+                        document.getElementById('apd').style.display = 'none';
+                        document.getElementById('pmd').style.display = 'none';
+                        document.getElementById('md').style.display  = 'block';
+
+                    }
+                }
+
+                function addRange() {
+                    const container = document.getElementById('range-container');
+                    const template = document.getElementById('range-template');
+                    const newRange = template.cloneNode(true);
+                    newRange.querySelector('button').style.display = 'block';
+                    newRange.id = ''; // Remove id to avoid duplicates
+                    newRange.querySelectorAll('input').forEach(input => input.value = ''); // Clear inputs
+                    container.appendChild(newRange);
+                }
+
+
+                function removeRange(button) {
+                    const rangeField = button.parentElement.parentElement;
+                    rangeField.remove();
+                }
+
+
+                function submitRanges() {
+                    const ranges = [];
+                    const container = document.getElementById('range-container');
+                    const maluss    = document.getElementById('malusstart').value;
+                    const maluse    = document.getElementById('malusend').value;
+                    const malusv    = document.getElementById('malusval').value;
+                    var type = 1;
+
+
+                    if (!isNaN(maluss) && !isNaN(maluse) && !isNaN(malusv))
+                    {
+                        ranges.push({maluss, maluse, malusv, type});
+                    }
+                    
+                    container.querySelectorAll('.field.is-grouped').forEach(group => {
+
+                        const start = parseFloat(group.querySelector('input[name="start"]').value);
+                        const end   = parseFloat(group.querySelector('input[name="end"]').value);
+                        const value = parseFloat(group.querySelector('input[name="value"]').value);
+                        type = 0;
+                        if (!isNaN(start) && !isNaN(end) && !isNaN(value))
+                        {
+                            ranges.push({ start, end, value, type });
+                        }
+                    });
+
+                    $.ajax({
+                        url: 'backend/include/multiplier.php',
+                        type: 'POST',
+                        data: {
+                            data: JSON.stringify(ranges),
+                        },
+                        success: function (response) {
+                            if (response == 1)
+                            {
+                                location.reload();
+                            }
+                        },
+                        error: function () {
+                        },
+                    });
+                }
+
+
+            </script>
+    </main>
+</body>
+
+</html>

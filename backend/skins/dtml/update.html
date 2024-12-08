@@ -1,0 +1,148 @@
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title"  style="color: gray;">Player Pair Update</h1>
+
+      <!-- Form -->
+      <form id="playerForm">
+        <!-- Nome Giocatore 1 -->
+        <div class="field">
+          <label class="label"  style="color: gray;">Player 1</label>
+          <div class="control">
+            <input class="input" type="text" name="player1_name" id="player1_name" placeholder="Enter first player name" required>
+          </div>
+        </div>
+
+        <!-- Nome Giocatore 2 -->
+        <div class="field">
+          <label class="label" style="color: gray;">Player 2</label>
+          <div class="control">
+            <input class="input" type="text" name="player2_name" id="player2_name" placeholder="Enter second player name" required>
+          </div>
+        </div>
+
+        <!-- Partite Vinte -->
+        <div class="field">
+          <label class="label" style="color: gray;">Wins</label>
+          <div class="control">
+            <input class="input" type="number" name="wins" id="wins" placeholder="Enter the number of wins" min="0" required>
+          </div>
+        </div>
+
+        <!-- Partite Perse -->
+        <div class="field">
+          <label class="label" style="color: gray;">Losses</label>
+          <div class="control">
+            <input class="input" type="number" name="losses" id="losses" placeholder="Enter the number of losses" min="0" required>
+          </div>
+        </div>
+
+        <!-- Bottoni -->
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-primary" type="button" id="anotherButton">
+              Add Record
+            </button>
+          </div>
+          <div class="control">
+            <button class="button is-link" type="button" id="updateButton">
+              Update Records
+            </button>
+          </div>
+          <div class="control">
+            <button class="button is-danger" type="button" id="resetButton">
+              Reset Session
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <section class="section">
+        <div class="container">
+          <div id="responseMessage" class="notification is-hidden"></div>
+        </div>
+      </section>
+      <!-- Messaggi -->
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function () {
+      // Funzione per gestire il bottone "Another"
+      $('#anotherButton').on('click', function () {
+        sendFormData('another');
+      });
+
+      // Funzione per gestire il bottone "Update"
+      $('#updateButton').on('click', function () {
+        sendFormData('update');
+      });
+
+      $('#resetButton').on('click', function () {
+            $.ajax({
+            url: 'backend/include/process.php',
+            type: 'POST',
+            data: { action: 'reset' },
+            success: function (response) {
+                $('#responseMessage').removeClass('is-hidden').removeClass('is-primary').removeClass('is-danger')
+                .addClass('is-warning')
+                .text(response);
+            },
+            error: function () {
+                $('#responseMessage').removeClass('is-hidden').removeClass('is-primary').removeClass('is-warning')
+                .addClass('is-danger')
+                .text('Session reset error.');
+            },
+            });
+        });
+
+
+      // Funzione per inviare dati via AJAX
+      function sendFormData(action) {
+        // Recupera i dati dal form
+        const player1_name = $('#player1_name').val();
+        const player2_name = $('#player2_name').val();
+        const wins = $('#wins').val();
+        const losses = $('#losses').val();
+
+        // Chiamata AJAX
+        $.ajax({
+          url: 'backend/include/process.php',
+          type: 'POST',
+          data: {
+            player1_name: player1_name,
+            player2_name: player2_name,
+            wins: wins,
+            losses: losses,
+            action: action,
+          },
+          success: function (response) {
+            if (response == -1)
+            {
+                $('#responseMessage').removeClass('is-hidden').removeClass('is-primary').removeClass('is-danger')
+                .addClass('is-warning').text("Player 1 not exists");
+            }
+            else if (response == -2)
+            {
+                $('#responseMessage').removeClass('is-hidden').removeClass('is-primary').removeClass('is-danger')
+                .addClass('is-warning').text("Player 2 not exists");
+            }
+            else
+            {
+                $('#responseMessage').removeClass('is-hidden').removeClass('is-warning').removeClass('is-danger')
+                .addClass('is-primary').text(response);
+
+                if (action === 'another') {
+                    $('#playerForm')[0].reset();
+                }
+            }
+          },
+          error: function () {
+            // Mostra un messaggio di errore
+            $('#responseMessage').removeClass('is-hidden').removeClass('is-warning').removeClass('is-primary')
+              .addClass('is-danger').text('Error incomes.');
+          },
+        });
+      }
+    });
+  </script>

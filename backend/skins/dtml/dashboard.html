@@ -1,0 +1,113 @@
+<section class="section">
+    <div class="container">
+        <div class="title" style="color: gray; margin-top: -50px;">DashBoard</div>
+        <div class="box" style="margin-top: 0px;">
+            <nav class="level">
+                <div class="level-item has-text-centered" id="ap" style="display: block;">
+                    <button class="button is-warning fixed-width" onclick="showItem(0)">Add Player</button>
+                </div>
+                <div class="level-item has-text-centered" id="ap" style="display: block;">
+                    <button class="button is-warning fixed-width" onclick="showItem(1)">Management</button>
+                </div>
+                <div class="level-item has-text-centered" id="ap" style="display: block;">
+                    <button class="button is-warning fixed-width" onclick="showItem(2)">Multiplier</button>
+                </div>
+            </nav>
+        </div>
+
+
+
+        <div id="apd" style="display: none;">
+            <div class="container">
+                <div class="title" style="color: gray; padding-bottom: 40px;">Add Player</div>
+            </div>
+            <form id="playerForm">
+                <!-- Nome Giocatore 1 -->
+                <div class="field">
+                    <div class="control">
+                        <input class="input" type="text" name="name" id="nname"
+                            placeholder="Inserisci il nome del giocatore" required>
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-primary fixed-width" type="button" id="addBtn" onclick="addPlayer()">
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="pmd" style="display: none;">
+            <div class="title" style="color: gray;">Player Management</div>
+            <table id="leaderboard" class="table is-striped is-hoverable is-bordered is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Ranking</th>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Victories</th>
+                        <th>Losses</th>
+                        <th>Save Changes</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <[foreach]>
+                        <[row]>
+                    <[/foreach]>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="md" style="display: none;">
+            <div class="title" style="color: gray;">Multiplier Management</div>
+            <section class="section">
+            <[viewranges]>
+
+            <div class="title" style="color: gray; margin-top: 40px;">New Multiplier</div>
+            <!-- Initial Value Input -->
+            <div class="field">
+                <label class="label" style="color: gray;">Malus</label>
+                <div class="control">
+                    <div class="field is-grouped" id="malus-template">
+                        <div class="control">
+                            <input class="input" type="number" placeholder="Start" name="start" id="malusstart">
+                        </div>
+                        <div class="control">
+                            <input class="input" type="number" placeholder="End" name="end" id="malusend">
+                        </div>
+                        <div class="control">
+                            <input class="input" type="number" step="0.01" placeholder="Value" name="value" id="malusval">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ranges -->
+            <div id="range-container">
+                <label class="label" style="color: gray;">Ranges</label>
+                <div class="field is-grouped" id="range-template">
+                    <div class="control">
+                        <input class="input" type="number" placeholder="Start" name="start">
+                    </div>
+                    <div class="control">
+                        <input class="input" type="number" placeholder="End" name="end">
+                    </div>
+                    <div class="control">
+                        <input class="input" type="number" step="0.01" placeholder="Value" name="value">
+                    </div>
+                    <div class="control">
+                        <button class="button is-danger" onclick="removeRange(this)" style="display: none;">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <div class="field" style="margin-top: 20px;">
+                <button class="button is-primary fixed-width" onclick="addRange()">Add Range</button>
+                <button class="button is-success fixed-width" onclick="submitRanges()">Submit</button>
+            </div>
+        </section>
+        </div>
+
+    </div>
+</section>
